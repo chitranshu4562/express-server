@@ -1,0 +1,19 @@
+extends layouts/main-layout.pug
+
+block content 
+    header 
+        nav 
+            ul 
+                li 
+                    a(href="/") Shop 
+                li 
+                    a(href="/admin/add-product") Add Product
+
+    main
+        if prods.length > 0 
+            each product in prods
+                ul 
+                    li 
+                        h1 #{product.title}
+        else 
+            h1 No Product Found
