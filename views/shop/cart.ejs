@@ -1,0 +1,7 @@
+<%- include('../includes/head.ejs') %>
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- we don't need to provide full path because express provide public directory using "express.static(path.join(__dirname, 'public')" -->
+</head>
+<body>
+    <%- include('../includes/navigation.ejs')%>
+<%- include('../includes/end.ejs') %>

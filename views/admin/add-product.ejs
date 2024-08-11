@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- we don't need to provide full path because express provide public directory using "express.static(path.join(__dirname, 'public')" -->
+</head>
+<body>
+    <main>
+        <form action="/admin/add-product" method="POST">
+            <input type="text" name="title" placeholder="Enter title">
+            <input type="text" name="imageUrl" placeholder="Enter image url">
+            <input type="number" name="price" placeholder="Enter price">
+            <textarea name="description" rows="5"></textarea>
+            <button type="submit">Add Product</button>
+        </form>
+    </main>
+</body>
+</html>

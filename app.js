@@ -5,7 +5,19 @@ const bodyParser = require('body-parser');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+const db = require('./util/database');
+
 const app = express();
+
+// db.execute('select * from products')
+// .then(([data, fieldDefinition]) => {
+//     console.log('DB query result: ', result);
+// })
+// .catch((err) => {
+//     console.log('Error while db connection: ', err);
+// });
+
+
 // app.set('view engine', 'pug');
 app.set('view engine', 'ejs');
 app.set('views', 'views');

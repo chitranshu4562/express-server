@@ -1,0 +1,23 @@
+<%- include('../includes/head.ejs') %>
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- we don't need to provide full path because express provide public directory using "express.static(path.join(__dirname, 'public')" -->
+</head>
+<body>
+    <%- include('../includes/navigation.ejs')%>
+    <main>
+        <% if (prods.length > 0) { %>
+            <% for (let product of prods) { %>
+                <ul>
+                    <li>
+                        <div>
+                            <span><%= product.title %></h1> | <span><%= product.price %></h1>
+                            <p><%= product.description %></p>
+                        </div>
+                    </li>
+                </ul>
+            <% } %>
+        <% } else { %>
+            <h1>No Products found !!</h1>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

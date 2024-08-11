@@ -7,3 +7,14 @@ body {
 a {
     text-decoration: none;
 }
+
+input {
+    display: block;
+    margin: 5px;
+}
+
+div {
+    margin: 12px;
+    background: aqua;
+    padding: 12px;
+}
