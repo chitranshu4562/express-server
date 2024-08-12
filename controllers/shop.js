@@ -8,13 +8,11 @@ exports.getProducts = (req, res) => {
     //     res.render('shop/product-list', { docTitle: 'My Shop', prods: products });
     // });
 
-    Product.fetchAll()
-        .then(([rows, fieldData]) => {
-            res.render('shop/product-list', { docTitle: 'My Shop', prods: rows });
+    Product.findAll()
+        .then(products => {
+            res.render('shop/product-list', { docTitle: 'My Shop', prods: products });
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch(error => console.log(error));
 };
 
 exports.getProduct = (req, res, next) => {
@@ -22,13 +20,13 @@ exports.getProduct = (req, res, next) => {
     // Product.findById(prodId, (product) => {
     //     res.render('shop/product-detail', { docTitle: 'Product detail', product: product });
     // });
-    Product.findById(prodId)
-    .then(([product]) => {
-        res.render('shop/product-detail', { docTitle: 'Product detail', product: product[0] });
-    })
-    .catch(err => {
-        console.log(err);
-    });
+    Product.findByPk(prodId)
+        .then(product => {
+            res.render('shop/product-detail', { docTitle: 'Product detail', product: product });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };
 
 exports.getIndex = (req, res) => {
@@ -37,13 +35,12 @@ exports.getIndex = (req, res) => {
     //     // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // __dirname gives path of current file
     //     res.render('shop/index', { docTitle: 'My Shop', prods: products });
     // });
-    Product.fetchAll()
-        .then(([rows, fieldData]) => {
-            res.render('shop/index', { docTitle: 'My Shop', prods: rows });
+
+    Product.findAll()
+        .then(products => {
+            res.render('shop/index', { docTitle: 'My Shop', prods: products });
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch(error => console.log(error));
 };
 
 exports.getCart = (req, res, next) => {
