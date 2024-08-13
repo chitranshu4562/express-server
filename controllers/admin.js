@@ -11,7 +11,7 @@ exports.postAddProduct = (req, res, next) => {
     const description = req.body.description;
     const price = req.body.price;
 
-    Product.create({
+    req.user.createProduct({
         title: title,
         description: description,
         imageUrl: imageUrl,
@@ -19,9 +19,7 @@ exports.postAddProduct = (req, res, next) => {
     }).then(result => {
         console.log(result);
         res.redirect('/');
-    }).catch(error => {
-        console.log(error);
-    })
+    }).catch(error => console.log(error));
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -41,30 +39,30 @@ exports.postEditProduct = (req, res, next) => {
     const prodDescription = req.body.description;
 
     Product.findByPk(prodId)
-    .then(product => {
-        product.title = prodTitle;
-        product.description = prodDescription;
-        product.imageUrl = prodImageUrl;
-        product.price = prodPrice;
-        return product.save();
-    })
-    .then(result => {
-        console.log('Product is updated successfully.');
-        res.redirect('/products');    
-    })
-    .catch(error => console.log(error));
+        .then(product => {
+            product.title = prodTitle;
+            product.description = prodDescription;
+            product.imageUrl = prodImageUrl;
+            product.price = prodPrice;
+            return product.save();
+        })
+        .then(result => {
+            console.log('Product is updated successfully.');
+            res.redirect('/products');
+        })
+        .catch(error => console.log(error));
 };
 
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
     Product.findByPk(prodId)
-    .then(product => {
-        return product.destroy();
-    }).then(result => {
-        console.log('Product is deleted successfully.');
-        res.redirect('/products');
-    })
-    .catch(err => console.log(err));
+        .then(product => {
+            return product.destroy();
+        }).then(result => {
+            console.log('Product is deleted successfully.');
+            res.redirect('/products');
+        })
+        .catch(err => console.log(err));
 };
 
 exports.getProducts = (req, res, next) => {
